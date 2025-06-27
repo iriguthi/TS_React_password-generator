@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import { PassCreate } from './logic/selectorLogic';
+import { handleGenerate } from './logic/selectorLogic';
+import inputDigits from './component/inputDigit';
 
 function App() {
   const [password, setPassword] = useState("");
-
-  // ボタン処理
-  function handleGenerate() {
-    const newPass = PassCreate(12);
-    setPassword(newPass);
-  }
+  const [digit, setDigit] = useState<number>(0);
 
   return (
     <>
@@ -37,10 +33,10 @@ function App() {
         </dl>
         <dl>
           <dt>文字数</dt>
-          <input id='digits'></input>
+          {inputDigits(setDigit)}
         </dl>
         <dl>
-          <button onClick={handleGenerate}>生成</button>
+          <button onClick={() => handleGenerate(setPassword, digit)}>生成</button>
           <dt>生成パスワード</dt>
           <pre style={{ fontSize: "1.5rem", background: "#eee", padding: "1rem" }}>
             {password || "ここの表示"}

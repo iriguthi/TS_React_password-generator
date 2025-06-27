@@ -3,7 +3,7 @@ import { bigLetters, smlLetters, numbers, symbol } from "../component/selector";
 const charSets = [bigLetters, smlLetters, numbers, symbol];
 
 // パス生成
-export function PassCreate(
+function PassCreate(
   digits: number
 ) {
   const pass: string[] = [];
@@ -16,4 +16,13 @@ export function PassCreate(
   }
 
   return pass.join('');
+}
+
+// パスワード生成ボタン
+export function handleGenerate(
+  setPassword: React.Dispatch<React.SetStateAction<string>>,
+  digit: number,
+) {
+  const newPass = PassCreate(digit);
+  setPassword(newPass);
 }
