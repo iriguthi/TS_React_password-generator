@@ -1,12 +1,23 @@
 import { bigLetters, smlLetters, numbers, symbol } from "../component/selector";
 
-const charSets = [bigLetters, smlLetters, numbers, symbol];
-
 // パス生成
 function PassCreate(
-  digits: number
+  digits: number,
+  options: {
+    bigLetters: boolean;
+    smlLetters: boolean;
+    number: boolean;
+    symbol: boolean;
+  },
 ) {
   const pass: string[] = [];
+  const charSets: any[] = [];
+
+  // オプション項目
+  if(options.bigLetters) charSets.push(bigLetters);
+  if(options.smlLetters) charSets.push(smlLetters);
+  if(options.number) charSets.push(numbers);
+  if(options.symbol) charSets.push(symbol);
 
   for (let i = 0; i < digits; i++) {
     const setIndex = Math.floor(Math.random() * charSets.length);
@@ -22,7 +33,13 @@ function PassCreate(
 export function handleGenerate(
   setPassword: React.Dispatch<React.SetStateAction<string>>,
   digit: number,
+  options: {
+    bigLetters: boolean;
+    smlLetters: boolean;
+    number: boolean;
+    symbol: boolean;
+  },
 ) {
-  const newPass = PassCreate(digit);
+  const newPass = PassCreate(digit, options);
   setPassword(newPass);
 }

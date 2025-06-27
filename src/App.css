@@ -16,6 +16,6 @@
   table-layout: fixed;
 }
 
-.check_wrap {
-  display: inline-block;
+.check_Container {
+  display: flex;
 }
