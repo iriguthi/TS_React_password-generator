@@ -40,6 +40,8 @@ export function handleGenerate(
     symbol: boolean;
   },
 ) {
+  if(digit < 8 || digit > 16) return setPassword('8～16文字で指定してください');
+
   const newPass = PassCreate(digit, options);
   setPassword(newPass);
 }

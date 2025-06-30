@@ -17,21 +17,22 @@ function App() {
   return (
     <>
       <div className= "Select_Container">
+        <h1>パスワードジェネレータ</h1>
         <dl>
           <dt>文字</dt>
-          <dd className='check_Container'>
+          <dd className='Check_Container'>
             {checkBox(setOption, options)}
           </dd>
         </dl>
         <dl>
-          <dt>文字数</dt>
+          <dt>文字数(8～16)</dt>
           {inputDigits(setDigit)}
         </dl>
         <dl>
           <button onClick={() => handleGenerate(setPassword, digit, options)}>生成</button>
           <dt>生成パスワード</dt>
-          <pre style={{ fontSize: "1.5rem", background: "#eee", padding: "1rem" }}>
-            {password || "ここの表示"}
+          <pre className='Generate_Container'>
+            {password || "ここに表示"}
           </pre>
         </dl>
       </div>
