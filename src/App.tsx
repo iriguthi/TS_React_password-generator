@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { handleGenerate } from './logic/selectorLogic';
-import inputDigits from './component/inputDigit';
-import checkBox from './component/checkbox';
+import {InputDigits} from './component/inputDigit';
+import {CheckBox} from './component/checkbox';
 
 function App() {
   const [password, setPassword] = useState("");
@@ -16,25 +16,23 @@ function App() {
 
   return (
     <>
+      <h1>パスワードジェネレータ</h1>
       <div className= "Select_Container">
-        <h1>パスワードジェネレータ</h1>
-        <dl>
-          <dt>文字</dt>
-          <dd className='Check_Container'>
-            {checkBox(setOption, options)}
-          </dd>
-        </dl>
-        <dl>
-          <dt>文字数(8～16)</dt>
-          {inputDigits(setDigit)}
-        </dl>
-        <dl>
-          <button onClick={() => handleGenerate(setPassword, digit, options)}>生成</button>
-          <dt>生成パスワード</dt>
-          <pre className='Generate_Container'>
-            {password || "ここに表示"}
-          </pre>
-        </dl>
+        <div>
+          <p>文字</p>
+          <CheckBox setOption={setOption} options={options} />
+        </div>
+        <div>
+          <p>文字数(8～16)</p>
+          <InputDigits setDigit={setDigit} />
+        </div>
+      </div>
+      <div>
+        <button onClick={() => handleGenerate(setPassword, digit, options)}>生成</button>
+        <p>生成パスワード</p>
+        <pre className='Generate_Container'>
+          {password || "ここに表示"}
+        </pre>
       </div>
     </>
   )
